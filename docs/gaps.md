@@ -1,5 +1,7 @@
 # Gaps
 
+> **Fork CDR.1, 2026-11-04:** independent `.cdr` import is implemented in a separate Rust adapter and is under validation. It reads through a pinned TraceDraw dependency and the existing SVG importer, exposes limitations and does not export CDR. No upstream parity score is reassessed. See [CDR scope and validation](cdr-import.md).
+
 > **Last reviewed:** 2026-10-10 · **Last updated:** 2026-11-04 · **Change:** minor (a slow first frame is waited for instead of restarting without the graphics adapter, and the menu bar no longer waits for the installed fonts' scan; scores and estimates unchanged) · **Target:** Adobe Illustrator 2026 (30.x)
 
 ## Feature submission evidence

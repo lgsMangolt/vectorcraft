@@ -498,10 +498,12 @@ pub const FORMATS: &[Format] = &[
     reader("pxr", "Pixar", &["pxr"], "image/x-pixar", true),
     // JP2 and raw codestreams are decoded to PNG; JPX composition is not supported.
     reader("jpeg2000", "JPEG 2000", &["jpf", "jpx", "jp2", "j2k", "j2c", "jpc"], "image/jp2", true),
+    reader("cdr", "CorelDRAW", &["cdr"], "application/vnd.corel-draw", false),
 ];
 
 /// Every extension `document.open` reads (the "All readable files" filter of open dialogs).
 pub const OPEN_EXTS: &[&str] = &[
+    "cdr",
     "vectorcraft",
     "drawcraft",
     "svg",

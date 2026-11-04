@@ -63,6 +63,7 @@ pub const TABLE: &[(&str, Class)] = &[
     ("plugins", Class::Layer(2)),
     ("affinity", Class::Standalone),
     ("scriptcheck", Class::Standalone),
+    ("cdr", Class::Layer(3)),
 ];
 
 /// Explicit orderings *within* a layer (earlier may be used by later).
@@ -71,6 +72,7 @@ pub const TABLE: &[(&str, Class)] = &[
 /// reuses the CPU reference (`compose`) for LUTs and parity tests. EPS previews use the renderer's
 /// TIFF writer and open Windows metafile previews. Live effects run effect plug-ins.
 pub const INTRA_LAYER_ORDER: &[&[&str]] = &[
+    &["svg", "cdr"],
     &["geom", "color"],
     &["pathops", "effects"],
     &["pathops", "trace"],

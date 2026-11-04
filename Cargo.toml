@@ -8,7 +8,7 @@ version = "0.21.0"
 edition = "2024"
 license = "MIT OR Apache-2.0"
 rust-version = "1.95"
-repository = "https://github.com/storytold/vectorcraft"
+repository = "https://github.com/lgsMangolt/vectorcraft"
 
 [workspace.dependencies]
 craft-pdf = { git = "https://github.com/storytold/craft-libs", rev = "9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb", default-features = false, features = ["interpret", "write"] }
@@ -52,6 +52,7 @@ vectorcraft-eps = { path = "crates/eps" }
 vectorcraft-metafile = { path = "crates/metafile" }
 vectorcraft-plugins = { path = "crates/plugins" }
 vectorcraft-affinity = { path = "crates/affinity" }
+vectorcraft-cdr = { path = "crates/cdr" }
 vectorcraft-scriptcheck = { path = "crates/scriptcheck" }
 
 # foundation

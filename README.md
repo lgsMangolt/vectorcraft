@@ -1,11 +1,4 @@
-<p align="center">
-  <a href="https://getartcraft.com/">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/brand/artcraft-logo-white.svg">
-      <img alt="ArtCraft" src="docs/brand/artcraft-logo.svg" width="200">
-    </picture>
-  </a>
-</p>
+> **Independent experimental fork:** [lgsMangolt/vectorcraft](https://github.com/lgsMangolt/vectorcraft), based on upstream VectorCraft. Adds independent CDR import through a pinned TraceDraw reader; see [scope and limitations](docs/cdr-import.md). This fork is not an ArtCraft release or endorsement. Custom branding and company integrations are future work in the [fork roadmap](docs/fork-roadmap.md).
 
 
 <p align="center">
@@ -391,6 +384,5 @@ part of this repository and VectorCraft, under [`docs/brand/LICENSE-brand.txt`](
 Forks and modified versions must remove them.
 
 <p align="center">
-  <a href="https://getartcraft.com/"><img alt="ArtCraft" src="docs/brand/artcraft-mark.svg" width="28"></a><br>
-  <sub>Made by the <a href="https://getartcraft.com/">ArtCraft</a> team and community.</sub>
+  <sub>Based on upstream VectorCraft by the <a href="https://getartcraft.com/">ArtCraft</a> team and community.</sub>
 </p>

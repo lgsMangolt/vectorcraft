@@ -1,5 +1,7 @@
 # VectorCraft Roadmap
 
+> **Fork CDR.1, 2026-11-04:** independent `.cdr` import is implemented in a separate Rust adapter and is under validation. It reads through a pinned TraceDraw dependency and the existing SVG importer, exposes limitations and does not export CDR. No upstream parity score is reassessed. See [CDR scope and validation](docs/cdr-import.md).
+
 - Paint: new gradients use the document's color model for default stops, including Gradient tool creation. Scores and estimates unchanged.
 
 - PDF.R1: editable PDF import uses the shared reader, scans page content in windows, and rejects known incomplete input before returning a document.

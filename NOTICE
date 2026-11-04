@@ -12,6 +12,16 @@ Third-party material
 This product bundles third-party material under its own licenses, listed below. The per-file
 list (author, source, license) is in ASSETS.md.
 
+Independent CDR reader and SVG interchange adapter
+
+TraceDraw crates (tracedraw-cdr, tracedraw-cdr-format, tracedraw-core, tracedraw-io and
+tracedraw-render), Copyright (c) 2026 TraceDraw members and contributors, are used under
+the Apache License, Version 2.0 option of their MIT OR Apache-2.0 license (LICENSE-APACHE).
+Source: https://github.com/tracedraw/tracedraw at revision
+b98a041a6e26ed925991bcab7a788a34812339a7. No TraceDraw trademarks or artwork are bundled.
+The VectorCraft adapter is original code in crates/cdr. The upstream CDR reader is an
+independent implementation; CorelDRAW is not bundled or invoked by this adapter.
+
 - Lucide icons (assets/icons/*.svg except dc-*.svg) — ISC License; the icons Lucide derived from Feather are also under the MIT License (Cole Bemis). See assets/icons/LICENSE-lucide.txt.
 - Source Sans 3 and Source Serif 4 (assets/fonts/Source*) — SIL Open Font License 1.1. See assets/fonts/OFL-SourceSans3.txt, OFL-SourceSerif4.txt.
 - Inter (assets/fonts/Inter-*.ttf) — SIL Open Font License 1.1. See assets/fonts/OFL-Inter.txt.

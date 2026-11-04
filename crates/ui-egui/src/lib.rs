@@ -9,6 +9,8 @@
 /// prompt shows both, and an AppImage's menu entry gets the icon.
 #[cfg(not(target_arch = "wasm32"))]
 pub const UPDATE_APP: craft_update::app::App = craft_update::app::App {
+    name: "VectorCraft CDR Fork",
+    repo: "lgsMangolt/vectorcraft",
     icon_png: Some(include_bytes!("../../../assets/app-icon/hicolor/128x128/apps/ai.storyteller.vectorcraft.png")),
     accent: Some([0xe8, 0x57, 0x3f]),
     ..craft_update::suite::VECTORCRAFT

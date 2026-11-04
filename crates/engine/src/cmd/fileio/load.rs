@@ -68,6 +68,9 @@ pub fn file_name(name: &str) -> String {
 /// extension of `name`.
 pub fn detect(name: &str, bytes: &[u8]) -> Option<&'static Format> {
     let by_name = readable_format_for_name(name);
+    if vectorcraft_cdr::sniff(bytes) {
+        return format("cdr");
+    }
     if vectorcraft_affinity::is_affinity(bytes) {
         return format("affinity");
     }
@@ -454,6 +457,10 @@ pub fn load_with(name: &str, bytes: &[u8], opts: &LoadOptions) -> Result<Loaded>
             let i = super::affinity::import(&title, bytes)?;
             preview_only = i.preview_only;
             (i.doc, i.warnings, false)
+        }
+        "cdr" => {
+            let imported = vectorcraft_cdr::import(bytes, &title).map_err(err)?;
+            (imported.document, imported.warnings, false)
         }
         _ if format.raster => (raster_doc(&title, bytes)?, vec![], false),
         _ => return Err(err(format!("{} files can't be opened yet", format.label))),

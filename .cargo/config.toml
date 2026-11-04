@@ -1,2 +1,7 @@
 [alias]
 xtask = "run --package xtask --"
+
+# The CDR interchange dependency also builds for the browser; getrandom 0.3 requires an
+# explicit backend there. Its wasm_js feature is enabled by the dependency on wasm32.
+[target.wasm32-unknown-unknown]
+rustflags = ["--cfg", 'getrandom_backend="wasm_js"']

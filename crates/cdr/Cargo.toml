@@ -1,0 +1,21 @@
+[package]
+name = "vectorcraft-cdr"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Independent CorelDRAW import adapter for VectorCraft"
+
+[lints]
+workspace = true
+
+[dependencies]
+vectorcraft-doc.workspace = true
+vectorcraft-svg.workspace = true
+thiserror.workspace = true
+zip = { version = "9", default-features = false, features = ["deflate"] }
+# MIT OR Apache-2.0; immutable, audited source (docs/cdr-import.md).
+tracedraw-cdr = { git = "https://github.com/tracedraw/tracedraw", rev = "b98a041a6e26ed925991bcab7a788a34812339a7" }
+tracedraw-io = { git = "https://github.com/tracedraw/tracedraw", rev = "b98a041a6e26ed925991bcab7a788a34812339a7" }
+
+[dev-dependencies]
+tracedraw-core = { git = "https://github.com/tracedraw/tracedraw", rev = "b98a041a6e26ed925991bcab7a788a34812339a7" }

@@ -1,5 +1,7 @@
 # Roadmap: milestones and what's next
 
+> **Fork CDR.1, 2026-11-04:** independent `.cdr` import is implemented in a separate Rust adapter and is under validation. It reads through a pinned TraceDraw dependency and the existing SVG importer, exposes limitations and does not export CDR. No upstream parity score is reassessed. See [CDR scope and validation](cdr-import.md).
+
 > **Last reviewed:** 2026-10-10 · **Last updated:** 2026-11-04 · **Change:** minor (New Document's units belong to the chosen preset; Recent and Saved cards keep their own units; scores and estimates unchanged) · **Target:** Adobe Illustrator 2026 (30.x)
 
 ## Feature submission evidence

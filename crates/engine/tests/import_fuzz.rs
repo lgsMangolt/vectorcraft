@@ -30,6 +30,22 @@ fn config() -> ProptestConfig {
     c
 }
 
+proptest! {
+    #![proptest_config(config())]
+
+    #[test]
+    fn cdr_random_input_never_panics(bytes in prop::collection::vec(any::<u8>(), 0..4096)) {
+        let result = std::panic::catch_unwind(|| vectorcraft_cdr::import(&bytes, "untrusted.cdr"));
+        prop_assert!(result.is_ok());
+        let mut riff = b"RIFF".to_vec();
+        riff.extend((bytes.len() as u32 + 4).to_le_bytes());
+        riff.extend(b"CDRL");
+        riff.extend(bytes);
+        let result = std::panic::catch_unwind(|| vectorcraft_cdr::import(&riff, "untrusted-riff.cdr"));
+        prop_assert!(result.is_ok());
+    }
+}
+
 // ---------- Affinity previews ----------
 
 /// Original pixels in a synthetic container envelope, not an Affinity document writer.

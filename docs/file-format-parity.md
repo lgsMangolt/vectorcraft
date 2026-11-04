@@ -1,5 +1,7 @@
 # File format parity
 
+> **Fork CDR.1, 2026-11-04:** independent `.cdr` import is implemented in a separate Rust adapter and is under validation. It reads through a pinned TraceDraw dependency and the existing SVG importer, exposes limitations and does not export CDR. No upstream parity score is reassessed. See [CDR scope and validation](cdr-import.md).
+
 > **Last reviewed:** 2026-10-10 · **Last updated:** 2026-11-01 · **Change:** minor (native format: dynamic symbols, #4938) · **Target:** Adobe Illustrator 2026 (30.x)
 
 Every format Illustrator opens, places, saves or exports, against VectorCraft's format table (`FORMATS`,
@@ -17,7 +19,7 @@ from the public specifications, and users' own `.ai` files are used locally only
 
 | | Illustrator | VectorCraft | Notes |
 |---|---:|---:|---|
-| Formats opened or placed | ~30 | 29 | missing: FreeHand, CorelDRAW, DWG, HEIC/HEIF, PICT, PS |
+| Formats opened or placed | ~30 | 29 upstream + experimental CDR in this fork | remaining: FreeHand, DWG, HEIC/HEIF, PICT, PS; CDR adapter limitations in [cdr-import.md](cdr-import.md) |
 | Formats saved (Save As) | 6 (AI, AIT, PDF, EPS, SVG, SVGZ) | 6 + native | `.ai` written PDF-compatible (with an editing copy of the art: layers, groups, paths, colors, artboards, transparency, opacity masks, clipping) or as legacy version 7 (layers and groups, one artboard per file) |
 | Formats exported | ~16 | 17 | missing: DWG, 3D (OBJ/USDA/glTF); extra: GIF/PNG-8 palette export, DXF up to 2018, layered PSD |
 | **Overall (weighted by use)** | | **~75%** | `.ai` and PDF dominate the weighting |
@@ -147,7 +149,7 @@ the app's own editing copy of a file (an EPS after its `%%EOF`, a `.ai`'s `AIPri
 | PICT | open, place (legacy) | no | no | rarely used |
 | Pixar PXR | open, place (legacy) | yes (any set of the R, G, B and A channels in 8 or 12 bits, dumped or run-length encoded, in tiles; R alone is gray; alpha matted to black or unassociated) | no | recognized by its magic number; 12-bit samples are clamped to 0.0 to 1.0; null tiles are transparent with A and black without; the offsets aren't read, and the image takes the default resolution; a file cut short, with header values or packets the format doesn't define, or past the pixel allowance is refused with a message; tested on synthetic files only; tests in `crates/engine/src/cmd/fileio/tests_pxrread.rs` and `crates/engine/tests/import_fuzz.rs` |
 | FreeHand `.fh*` | open (legacy) | no | no | |
-| CorelDRAW `.cdr` | open | no | no | |
+| CorelDRAW `.cdr` | open | experimental import | no | Independent TraceDraw reader through an SVG adapter; explicit loss notes, physical page sizes, no CorelDRAW dependency; see [CDR validation](cdr-import.md) |
 | Text `.txt` | place, export | place (Text Import Options) | yes | |
 | RTF `.rtf` | place | place (area type with fonts, size, bold, italic, underline, strikethrough, caps, superscript and subscript, color, alignment, indents and paragraph spacing) | no | `tests/textimport.rs`, `place/rtf.rs`; fuzzed (`text_import_fuzz.rs`); `\'hh` bytes read as Windows-1252 or Mac Roman only |
 | Word `.docx` | place | place (area type with the document's styles and its fonts, size, bold, italic, underline, strikethrough, caps, superscript and subscript, color, alignment, indents and paragraph spacing) | no | `tests/textimport.rs`, `place/docx.rs`; fuzzed (`text_import_fuzz.rs`); list numbers, pictures and text boxes are left out |
