@@ -54,6 +54,12 @@ Verified locally on Windows x64, 2026-11-04:
 - `cargo test -p vectorcraft-cdr --lib`: 5 passed (four CDR versions, multiple pages,
   truncated data, ZIP expansion and index-allocation limits).
 - `cargo clippy -p vectorcraft-cdr --all-targets -- -D warnings`: passed.
+- `cargo test -p vectorcraft-engine --test cdr_import`: passed. The format is
+  advertised read-only and a rejected CDR leaves the existing document unchanged.
+- `cargo test -p vectorcraft-engine --test import_fuzz cdr_random_input_never_panics -- --exact`:
+  passed (64 generated arbitrary inputs and matching RIFF containers).
+- `cargo check -p vectorcraft-cdr --target wasm32-unknown-unknown`: passed. This
+  checks the importer and its dependencies, not the complete browser application.
 - `cargo build -p vectorcraft-cli`: passed. The resulting executable read a user-authorized
   local CDR 23 sample and wrote native VectorCraft artwork and a rendered PNG.
 - That local sample kept one 148 x 210 mm page and its full 6144 x 8192 pixel image,
@@ -65,8 +71,10 @@ Verified locally on Windows x64, 2026-11-04:
 - The full `cargo xtask ci` was attempted: formatting passed, then the broad workspace
   Clippy build was stopped to preserve local disk space. This is not a full CI pass;
   the complete shared GitHub gate remains required before a release.
+- The full shared gate was started on the implementation commit in
+  [GitHub Actions](https://github.com/lgsMangolt/vectorcraft/actions/runs/41873063928).
+  Its result must be checked there; starting a run does not establish that it passed.
 
-The engine regression and browser-target checks are recorded separately when complete.
 Passing an import of a bitmap-only drawing does not establish fidelity for editable text,
 gradients, clip containers, spot inks or complex effects. The installed official desktop
 app is separate from this checkout; an experimental CLI/MCP build is a different program.
